@@ -1,5 +1,7 @@
 package FrendChat.Models;
 
+import FrendChat.Main;
+import FrendChat.Presenters.Chat;
 import FrendChat.Presenters.Connect;
 import FrendChat.Presenters.Login;
 import javafx.concurrent.Task;
@@ -23,13 +25,13 @@ public class FrendServer {
     private FrendServer() {
     }
 
-    public void connect(String ip, int port, Connect connect) {
+    public void connect(String ip, int port, Connect callback) {
         Task task = new Task<Void>() {
             @Override
             public Void call() {
                 try {
                     socket = new Socket(ip, port);
-                    socket.setSoTimeout(2000);
+                    socket.setSoTimeout(3000);
 
                     out = new PrintWriter(socket.getOutputStream(), true);
                     out.println("FREND_SERVER");
@@ -37,12 +39,12 @@ public class FrendServer {
                     in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
                     if (in.readLine().equals("FREND_RECIEVED"))
-                        connect.mdlConnectSuccessful();
+                        callback.mdlConnectSuccessful();
                     else
-                        connect.mdlConnectUnsuccessful();
+                        callback.mdlConnectUnsuccessful();
 
                 } catch (Exception e) {
-                    connect.mdlConnectUnsuccessful();
+                    callback.mdlConnectUnsuccessful();
                 }
                 return null;
             }
@@ -60,7 +62,7 @@ public class FrendServer {
         }
     }
 
-    public void login(String username, String password, Login login) {
+    public void login(String username, String password, Login callback) {
         Task task = new Task<Void>() {
             @Override
             public Void call() {
@@ -68,11 +70,11 @@ public class FrendServer {
                     out.println("LOGIN" + username + " " + password);
 
                     if (in.readLine().equals("CREDENTIALS_OKAY"))
-                        login.mdlCredentialsAccepted();
+                        callback.mdlCredentialsAccepted();
                     else
-                        login.mdlCredentialsRejected();
+                        callback.mdlCredentialsRejected();
                 } catch (Exception e) {
-                    login.mdlConnectionError();
+                    callback.mdlConnectionError();
                 }
                 return null;
             }
@@ -81,22 +83,82 @@ public class FrendServer {
         new Thread(task).start();
     }
 
-    public void register(String username, String password, String colorHex, Login login) {
+    public void register(String username, String password, String colorHex, Login callback) {
         Task task = new Task<Void>() {
             @Override
             public Void call() {
                 try {
                     out.println("REG" + colorHex + username + " " + password);
                     String response = in.readLine();
-                    System.out.println(response);
                     if (response.equals("USER_REGISTERED"))
-                        login.mdlCredentialsAccepted();
-                    else if (response.equals( "USERNAME_IN_USE"))
-                        login.mdlUsernameInUse();
+                        callback.mdlCredentialsAccepted();
+                    else if (response.equals("USERNAME_IN_USE"))
+                        callback.mdlUsernameInUse();
                     else
-                        login.mdlConnectionError();
+                        callback.mdlConnectionError();
                 } catch (Exception e) {
-                    login.mdlConnectionError();
+                    callback.mdlConnectionError();
+                }
+                return null;
+            }
+        };
+
+        new Thread(task).start();
+    }
+
+    public void broadcastMessage(String message, Chat callback) {
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                try {
+                    out.println("TXT" + message);
+                    callback.mdlClearInput();
+                } catch (Exception e) {
+                    callback.mdlConnectionError();
+                }
+                return null;
+            }
+        };
+
+        new Thread(task).start();
+    }
+
+    public void chatListen(Chat callback) {
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                try {
+                    socket.setSoTimeout(0);
+                    while (socket.isConnected()) {
+                        String response = in.readLine();
+                        if (response.substring(0, 3).equals("BRD")) {
+                            callback.mdlChatMessage(response.substring(3, response.length()));
+                        } else if (response.substring(0, 4).equals("JOIN")) {
+                            callback.mdlJoinUser(response.substring(11, response.length()), response.substring(4, 11));
+                        } else if (response.substring(0, 5).equals("LEAVE")) {
+                            callback.mdlLeaveUser(response.substring(5, response.length()));
+                        }
+                    }
+                } catch (Exception e) {
+                    //If the Window is not showing, user is quitting.
+                    if(Main.getPrimaryStage().isShowing())
+                        callback.mdlConnectionError();
+                }
+                return null;
+            }
+        };
+
+        new Thread(task).start();
+    }
+
+    public void requestUserList(Chat callback) {
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                try {
+                    out.println("LIST");
+                } catch (Exception e) {
+                    callback.mdlConnectionError();
                 }
                 return null;
             }

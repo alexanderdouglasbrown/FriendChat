@@ -1,53 +1,134 @@
 package FrendChat.Presenters;
 
+import FrendChat.Main;
+import FrendChat.Models.FrendServer;
+import com.sun.javaws.exceptions.ExitException;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
 
 public class Chat {
+    FrendServer frendServer = FrendServer.getInstance();
+
     @FXML
     private WebView webChat;
     @FXML
     private ListView lstUsers;
-
-    String webHTML;
+    @FXML
+    private TextField txtInput;
 
     public void initialize() {
         webChat.setContextMenuEnabled(false);
 
-        webHTML = "<style>" +
-                "body{" +
-                "font-family: \"Arial\";" +
+        String initialHTML = "<style>" +
+                "body {" +
+                "font: 14px \"Segoe UI\", Arial;" +
                 "}" +
-                "</style>" +
-                "<b><font color='blue'>Lorem</font></b> ipsum dolor sit amet, consectetur adipiscing elit. Donec quam lacus, convallis sit amet leo ut, tempus commodo tortor. Pellentesque eu libero lorem. Nulla facilisi. Suspendisse purus diam, tincidunt sit amet eros sit amet, egestas molestie quam. In tincidunt enim felis, maximus suscipit lorem viverra vel. Etiam dolor leo, luctus ut enim in, vehicula molestie eros. Vestibulum eu congue lacus, at dictum nisl. Ut vel nulla ut metus porta ullamcorper.\n" +
-                "\n" +
-                "Duis vehicula fringilla volutpat. Phasellus mattis feugiat nisl eu porttitor. Ut dapibus consequat luctus. Donec vitae massa rhoncus, feugiat dui porta, maximus est. Vivamus ac maximus dui, vel laoreet mauris. Aliquam erat volutpat. Pellentesque dolor ex, condimentum ut metus in, malesuada porta nunc. Maecenas ligula lorem, lacinia at hendrerit vitae, bibendum ac tellus. Pellentesque condimentum molestie orci ac mollis. Vestibulum lectus metus, faucibus eget placerat ut, auctor eget massa. Etiam eget velit tellus. Donec ullamcorper ut nisi id auctor. Sed eget sollicitudin ante.\n" +
-                "\n" +
-                "Nam eleifend vel leo sit amet congue. Sed tristique sollicitudin velit vitae eleifend. Nunc rutrum facilisis libero, eget ultricies nunc consectetur ac. Quisque a erat vel augue porta rutrum. Vestibulum ullamcorper sed neque nec semper. Maecenas at felis in dui facilisis rhoncus. Ut magna enim, tincidunt et sollicitudin vitae, egestas ac diam. Sed sagittis massa et lorem rutrum tempor. Phasellus varius ultrices facilisis. Etiam sollicitudin eros sit amet efficitur rhoncus. Quisque gravida lobortis odio, quis commodo turpis dictum et. Suspendisse varius libero lorem, eu mollis justo ornare sit amet. Integer ut accumsan neque, nec interdum massa. In a congue diam. Morbi ornare, augue vitae sodales fringilla, lectus quam sodales diam, eu lacinia est quam a urna.\n" +
-                "\n" +
-                "Sed pellentesque velit vitae risus egestas pretium non vitae felis. Sed blandit molestie egestas. Sed molestie vitae turpis eu pretium. Fusce iaculis congue lorem at egestas. Curabitur pharetra nisi sit amet leo maximus pretium. Aenean sed vulputate arcu. Aliquam eros nisl, congue vel blandit a, dignissim eu felis. Nam vel elit lobortis, pulvinar orci in, ultrices eros. Nam efficitur nunc in rutrum tempus. Proin fermentum massa ac sagittis lobortis. Donec condimentum velit non pellentesque scelerisque. Aliquam sit amet condimentum tortor, non lobortis lacus. Morbi sodales finibus ipsum, nec accumsan lacus dignissim et. Interdum et malesuada fames ac ante ipsum primis in faucibus.\n" +
-                "\n" +
-                "Sed lacinia, nulla vitae viverra elementum, tortor purus feugiat nunc, sed faucibus orci tortor ut mi. Vivamus nec turpis euismod, lacinia velit et, mattis diam. Vivamus ac convallis nisl, ac imperdiet augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ullamcorper velit quis mi tempor faucibus. Cras blandit lorem molestie, vehicula nisl vel, ornare lacus. Pellentesque aliquam ligula in lacus porta hendrerit. Vivamus non dictum diam, at tincidunt nibh.";
+                "</style>";
 
-        webChat.getEngine().loadContent(webHTML);
+        webChat.getEngine().loadContent(initialHTML);
 
-        Text user = new Text("Alex");
-        user.setFont(Font.font("Arial", FontWeight.BOLD,14));
-        user.setFill(Color.TEAL);
+        Platform.runLater(() -> {
+            txtInput.requestFocus();
+            frendServer.chatListen(this);
+            frendServer.requestUserList(this);
+        });
+        Stage primaryStage = Main.getPrimaryStage();
 
-        lstUsers.getItems().addAll(user, "Becky", "Killme", "Jojo");
-        lstUsers.getItems().remove("Killme");
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                FrendServer.getInstance().closeConnection();
+            }
+        });
     }
 
     public void btnSend() {
-        //TODO Escape HTML things (< (&lt;) > (&gt;) "(&quot;) '(&#39;) and &(&amp;))
-        String textToAdd = "<div><b><font color='teal'>Alex</font>: </b>Hello World!</div>";
-        webChat.getEngine().executeScript("document.body.innerHTML += \"" + textToAdd + "\";");
-        webChat.getEngine().executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        if (txtInput.getLength() == 0)
+            return;
+
+        String message = txtInput.getText();
+        message = message.replace("&", "&amp;");
+        message = message.replace("<", "&lt;");
+        message = message.replace(">", "&gt;");
+        message = message.replace("\"", "&quot;");
+        message = message.replace("'", "&#39;");
+
+        frendServer.broadcastMessage(message, this);
+    }
+
+    public void mdlClearInput() {
+        Platform.runLater(() -> {
+            txtInput.setText("");
+            txtInput.requestFocus();
+        });
+    }
+
+    public void mdlChatMessage(String message) {
+        Platform.runLater(() -> {
+            webChat.getEngine().executeScript("document.body.innerHTML += \"" + message + "\";");
+            webChat.getEngine().executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        });
+    }
+
+    public void mdlConnectionError() {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Frend Chat");
+            alert.setHeaderText("Connection Error");
+            alert.setContentText("A communication error has occurred with the server.");
+            alert.showAndWait();
+
+            frendServer.closeConnection();
+
+            Main.getPrimaryStage().close();
+            Main.setPrimaryStage(new Stage());
+            Stage stage = Main.getPrimaryStage();
+            stage.getIcons().add(Main.getIcon());
+            stage.setTitle("Frend Chat");
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/FrendChat/Views/Connect.fxml"));
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (Exception e) {
+                System.exit(ExitException.LAUNCH_ERROR);
+            }
+        });
+    }
+
+    public void mdlJoinUser(String username, String color) {
+        Platform.runLater(() -> {
+            Text user = new Text(username);
+            user.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+            user.setFill(Color.web(color));
+            lstUsers.getItems().add(user);
+        });
+    }
+
+    public void mdlLeaveUser(String username) {
+        Platform.runLater(() -> {
+            int pos = -1;
+            String testString = "Text[text=\"" + username + "\"";
+            for(int i = 0; i < lstUsers.getItems().size(); i++) {
+                if (lstUsers.getItems().get(i).toString().contains(testString)) {
+                    pos = i;
+                    break;
+                }
+            }
+            lstUsers.getItems().remove(pos);
+        });
     }
 }

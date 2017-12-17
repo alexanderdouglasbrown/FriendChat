@@ -38,9 +38,9 @@
                             </font>
                         </Label>
                         <Label text="Username" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                        <TextField fx:id="txtLoginUsername" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtLoginUsername" text="Test" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label text="Password" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                        <PasswordField fx:id="pswLoginPassword" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <PasswordField fx:id="pswLoginPassword" text="password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Button defaultButton="true" mnemonicParsing="false" onAction="#btnLogin" text="Login" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                     </children>
                     <padding>

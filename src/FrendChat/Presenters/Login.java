@@ -1,5 +1,6 @@
 package FrendChat.Presenters;
 
+import FrendChat.Main;
 import FrendChat.Models.FrendServer;
 import com.sun.javaws.exceptions.ExitException;
 import javafx.application.Platform;
@@ -15,9 +16,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class Login {
-    final int maxUsernameLength = 25;
+    final private int maxUsernameLength = 25;
 
-    FrendServer frendServer = FrendServer.getInstance();
+    private FrendServer frendServer = FrendServer.getInstance();
 
     @FXML
     private TextField txtLoginUsername;
@@ -46,7 +47,7 @@ public class Login {
         if (txtLoginUsername.getText().length() > maxUsernameLength) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Frend Chat");
-            alert.setHeaderText("Username May Not Contain Be Greater Than " + maxUsernameLength + " Characters" );
+            alert.setHeaderText("Username May Not Contain Be Greater Than " + maxUsernameLength + " Characters");
             alert.setContentText("Your username may not be greater than " + maxUsernameLength + " characters. Please choose something different.");
             alert.showAndWait();
 
@@ -90,7 +91,7 @@ public class Login {
         if (txtRegisterUsername.getText().length() > maxUsernameLength) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Frend Chat");
-            alert.setHeaderText("Username May Not Contain Be Greater Than " + maxUsernameLength + " Characters" );
+            alert.setHeaderText("Username May Not Contain Be Greater Than " + maxUsernameLength + " Characters");
             alert.setContentText("Your username may not be greater than " + maxUsernameLength + " characters. Please choose something different.");
             alert.showAndWait();
 
@@ -137,13 +138,7 @@ public class Login {
     }
 
     public void mdlCredentialsAccepted() {
-        Platform.runLater(() -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Frend Chat");
-            alert.setHeaderText("Credentials Accepted");
-            alert.setContentText("This is as far as Frend Chat is implemented though.");
-            alert.showAndWait();
-        });
+        gotoChatScreen();
     }
 
     public void mdlUsernameInUse() {
@@ -176,12 +171,34 @@ public class Login {
 
             frendServer.closeConnection();
 
-            Stage stage = FrendChat.Main.getPrimaryStage();
+            Main.getPrimaryStage().close();
+            Main.setPrimaryStage(new Stage());
+            Stage stage = Main.getPrimaryStage();
+            stage.getIcons().add(Main.getIcon());
+            stage.setTitle("Frend Chat");
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/FrendChat/Views/Connect.fxml"));
                 stage.setScene(new Scene(root));
                 stage.show();
             } catch (Exception e) {
+                System.exit(ExitException.LAUNCH_ERROR);
+            }
+        });
+    }
+
+    private void gotoChatScreen() {
+        Platform.runLater(() -> {
+            Main.getPrimaryStage().close();
+            Main.setPrimaryStage(new Stage());
+            Stage stage = Main.getPrimaryStage();
+            stage.getIcons().add(Main.getIcon());
+            stage.setTitle("Frend Chat");
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/FrendChat/Views/Chat.fxml"));
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (Exception e) {
+                System.out.println(e);
                 System.exit(ExitException.LAUNCH_ERROR);
             }
         });

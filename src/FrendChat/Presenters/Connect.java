@@ -1,5 +1,6 @@
 package FrendChat.Presenters;
 
+import FrendChat.Main;
 import FrendChat.Models.FrendServer;
 import com.sun.javaws.exceptions.ExitException;
 import javafx.application.Platform;
@@ -21,7 +22,7 @@ public class Connect {
     @FXML
     private ProgressIndicator uiProgress;
 
-    FrendServer frendServer = FrendServer.getInstance();
+    private FrendServer frendServer = FrendServer.getInstance();
 
     public void btnConnect(ActionEvent actionEvent) {
         int port;
@@ -56,7 +57,11 @@ public class Connect {
             btnConnect.setVisible(true);
             uiProgress.setVisible(false);
 
-            Stage stage = FrendChat.Main.getPrimaryStage();
+            Main.getPrimaryStage().close();
+            Main.setPrimaryStage(new Stage());
+            Stage stage = Main.getPrimaryStage();
+            stage.getIcons().add(Main.getIcon());
+            stage.setTitle("Frend Chat");
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/FrendChat/Views/Login.fxml"));
                 stage.setScene(new Scene(root));
