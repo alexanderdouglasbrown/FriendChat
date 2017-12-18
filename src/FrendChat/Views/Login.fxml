@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<TabPane tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FrendChat.Presenters.Login">
+<TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FrendChat.Presenters.Login">
     <tabs>
         <Tab text="Login">
             <content>
@@ -38,10 +38,10 @@
                             </font>
                         </Label>
                         <Label text="Username" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                        <TextField fx:id="txtLoginUsername" text="Test" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtLoginUsername" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label text="Password" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                        <PasswordField fx:id="pswLoginPassword" text="password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Button defaultButton="true" mnemonicParsing="false" onAction="#btnLogin" text="Login" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                        <PasswordField fx:id="pswLoginPassword" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button fx:id="btnLogin" defaultButton="true" mnemonicParsing="false" onAction="#btnLogin" text="Login" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                     </children>
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -74,7 +74,7 @@
                         <TextField fx:id="txtRegisterUsername" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="Password" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                         <PasswordField fx:id="pswRegisterPassword" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="Confirm&#13;Password" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                  <Label text="Confirm&#13;Password" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
                   <PasswordField fx:id="pswConfirmPassword" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label text="Username&#13;Color" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
                         <ColorPicker fx:id="clrRegisterColor" prefHeight="25.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -82,7 +82,7 @@
                                 <Color blue="0.0" green="0.0" red="0.0" />
                             </value>
                         </ColorPicker>
-                        <Button defaultButton="true" mnemonicParsing="false" onAction="#btnRegister" text="Register" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                        <Button fx:id="btnRegister" mnemonicParsing="false" onAction="#btnRegister" text="Register" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                     </children>
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

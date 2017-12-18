@@ -4,15 +4,14 @@ import FrendChat.Main;
 import FrendChat.Models.FrendServer;
 import com.sun.javaws.exceptions.ExitException;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class Login {
@@ -32,6 +31,29 @@ public class Login {
     private PasswordField pswConfirmPassword;
     @FXML
     private ColorPicker clrRegisterColor;
+    @FXML
+    private TabPane tabPane;
+    @FXML
+    private Button btnLogin;
+    @FXML
+    private Button btnRegister;
+
+    public void initialize() {
+        tabPane.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<Tab>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Tab> ov, Tab oldTab, Tab newTab) {
+                        if (newTab.getText().equals("Register")) {
+                            btnLogin.setDefaultButton(false);
+                            btnRegister.setDefaultButton(true);
+                        }
+                        if (newTab.getText().equals("Login")) {
+                            btnRegister.setDefaultButton(false);
+                            btnLogin.setDefaultButton(true);
+                        }
+                    }
+                });
+    }
 
     public void btnLogin(ActionEvent actionEvent) {
         if (txtLoginUsername.getText().contains(" ")) {
@@ -137,8 +159,8 @@ public class Login {
 
     }
 
-    public void mdlCredentialsAccepted() {
-        gotoChatScreen();
+    public void mdlCredentialsAccepted(String username) {
+        gotoChatScreen(username);
     }
 
     public void mdlUsernameInUse() {
@@ -176,6 +198,8 @@ public class Login {
             Stage stage = Main.getPrimaryStage();
             stage.getIcons().add(Main.getIcon());
             stage.setTitle("Frend Chat");
+            stage.setMinWidth(260);
+            stage.setMinHeight(165);
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/FrendChat/Views/Connect.fxml"));
                 stage.setScene(new Scene(root));
@@ -186,19 +210,21 @@ public class Login {
         });
     }
 
-    private void gotoChatScreen() {
+    private void gotoChatScreen(String username) {
         Platform.runLater(() -> {
             Main.getPrimaryStage().close();
             Main.setPrimaryStage(new Stage());
             Stage stage = Main.getPrimaryStage();
+            stage.setUserData(username);
             stage.getIcons().add(Main.getIcon());
             stage.setTitle("Frend Chat");
+            stage.setMinWidth(400);
+            stage.setMinHeight(300);
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/FrendChat/Views/Chat.fxml"));
                 stage.setScene(new Scene(root));
                 stage.show();
             } catch (Exception e) {
-                System.out.println(e);
                 System.exit(ExitException.LAUNCH_ERROR);
             }
         });

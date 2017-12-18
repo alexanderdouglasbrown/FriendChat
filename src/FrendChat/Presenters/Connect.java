@@ -62,6 +62,8 @@ public class Connect {
             Stage stage = Main.getPrimaryStage();
             stage.getIcons().add(Main.getIcon());
             stage.setTitle("Frend Chat");
+            stage.setMinWidth(250);
+            stage.setMinHeight(300);
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/FrendChat/Views/Login.fxml"));
                 stage.setScene(new Scene(root));
@@ -81,6 +83,19 @@ public class Connect {
             alert.setTitle("Frend Chat");
             alert.setHeaderText("Unable to Connect");
             alert.setContentText("Unable to connect. Check if your IP address and port were entered correctly.");
+            alert.showAndWait();
+        });
+    }
+
+    public void mdlWrongVersion() {
+        Platform.runLater(() -> {
+            btnConnect.setVisible(true);
+            uiProgress.setVisible(false);
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Frend Chat");
+            alert.setHeaderText("Frend Chat Client Not up to Date");
+            alert.setContentText("Unable to connect. Please download the newest version of Frend Chat.");
             alert.showAndWait();
         });
     }

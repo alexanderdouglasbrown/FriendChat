@@ -34,6 +34,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/FrendChat/Views/Connect.fxml"));
         primaryStage.setTitle("Frend Chat");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setMinWidth(260);
+        primaryStage.setMinHeight(165);
         primaryStage.show();
     }
 

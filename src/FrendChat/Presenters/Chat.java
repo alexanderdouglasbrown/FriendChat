@@ -22,8 +22,6 @@ import javafx.stage.WindowEvent;
 
 
 public class Chat {
-    FrendServer frendServer = FrendServer.getInstance();
-
     @FXML
     private WebView webChat;
     @FXML
@@ -31,12 +29,21 @@ public class Chat {
     @FXML
     private TextField txtInput;
 
+    private FrendServer frendServer = FrendServer.getInstance();
+    private Stage accountStage;
+
+    String storedUsername;
+    static Chat chatHandle;
+
     public void initialize() {
         webChat.setContextMenuEnabled(false);
 
         String initialHTML = "<style>" +
                 "body {" +
                 "font: 14px \"Segoe UI\", Arial;" +
+                "}" +
+                "div {" +
+                "margin-bottom: 1px;" +
                 "}" +
                 "</style>";
 
@@ -54,6 +61,25 @@ public class Chat {
                 FrendServer.getInstance().closeConnection();
             }
         });
+
+        storedUsername = (String) primaryStage.getUserData();
+        chatHandle = this;
+
+        accountStage = new Stage();
+        accountStage.getIcons().add(Main.getIcon());
+        accountStage.setTitle("Frend Chat");
+        accountStage.setMinWidth(260);
+        accountStage.setMinHeight(400);
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/FrendChat/Views/Account.fxml"));
+            accountStage.setScene(new Scene(root));
+        } catch (Exception e) {
+            System.exit(ExitException.LAUNCH_ERROR);
+        }
+    }
+
+    static Chat getHandle(){
+        return chatHandle;
     }
 
     public void btnSend() {
@@ -68,6 +94,13 @@ public class Chat {
         message = message.replace("'", "&#39;");
 
         frendServer.broadcastMessage(message, this);
+    }
+
+    public void btnAccount() {
+        if (!accountStage.isShowing())
+            accountStage.show();
+        else
+            accountStage.requestFocus();
     }
 
     public void mdlClearInput() {
@@ -99,6 +132,8 @@ public class Chat {
             Stage stage = Main.getPrimaryStage();
             stage.getIcons().add(Main.getIcon());
             stage.setTitle("Frend Chat");
+            stage.setMinWidth(260);
+            stage.setMinHeight(165);
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/FrendChat/Views/Connect.fxml"));
                 stage.setScene(new Scene(root));
@@ -122,13 +157,34 @@ public class Chat {
         Platform.runLater(() -> {
             int pos = -1;
             String testString = "Text[text=\"" + username + "\"";
-            for(int i = 0; i < lstUsers.getItems().size(); i++) {
+            for (int i = 0; i < lstUsers.getItems().size(); i++) {
                 if (lstUsers.getItems().get(i).toString().contains(testString)) {
                     pos = i;
                     break;
                 }
             }
-            lstUsers.getItems().remove(pos);
+            if (pos != -1)
+                lstUsers.getItems().remove(pos);
+        });
+    }
+
+    public void updateColor(String color){
+        Platform.runLater(() -> {
+            int pos = -1;
+            String testString = "Text[text=\"" + storedUsername + "\"";
+            for (int i = 0; i < lstUsers.getItems().size(); i++) {
+                if (lstUsers.getItems().get(i).toString().contains(testString)) {
+                    pos = i;
+                    break;
+                }
+            }
+            if (pos != -1)
+                lstUsers.getItems().remove(pos);
+
+            Text user = new Text(storedUsername);
+            user.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+            user.setFill(Color.web(color));
+            lstUsers.getItems().add(user);
         });
     }
 }
