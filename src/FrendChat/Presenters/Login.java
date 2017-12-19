@@ -215,7 +215,6 @@ public class Login {
             Main.getPrimaryStage().close();
             Main.setPrimaryStage(new Stage());
             Stage stage = Main.getPrimaryStage();
-            stage.setUserData(username);
             stage.getIcons().add(Main.getIcon());
             stage.setTitle("Frend Chat");
             stage.setMinWidth(400);

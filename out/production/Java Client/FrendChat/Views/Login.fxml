@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<TabPane tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FrendChat.Presenters.Login">
+    <tabs>
+        <Tab text="Login">
+            <content>
+                <GridPane alignment="center" hgap="10" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Login" GridPane.columnSpan="2">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label text="Username" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                        <Label text="Password" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtUsername" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <PasswordField fx:id="txtPassword" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button defaultButton="true" mnemonicParsing="false" text="Login" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </GridPane>
+            </content>
+        </Tab>
+        <Tab text="Register">
+            <content>
+                <GridPane alignment="center" hgap="10" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Register" GridPane.columnSpan="2">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label text="Username" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                        <Label text="Password" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <CheckBox mnemonicParsing="false" selected="true" text="Hide Password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="Username&#13;Color" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                        <ColorPicker prefHeight="25.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                            <value>
+                                <Color blue="0.0" green="0.0" red="0.0" />
+                            </value>
+                        </ColorPicker>
+                        <Button defaultButton="true" mnemonicParsing="false" text="Register" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </GridPane>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>

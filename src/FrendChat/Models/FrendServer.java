@@ -18,6 +18,7 @@ public class FrendServer {
     BufferedReader in;
 
     String newPass = "";
+    String storedUsername = "";
 
     public Account accountCallback = null;
 
@@ -36,16 +37,16 @@ public class FrendServer {
             public Void call() {
                 try {
                     socket = new Socket(ip, port);
-                    socket.setSoTimeout(3000);
+                    socket.setSoTimeout(5000);
 
                     out = new PrintWriter(socket.getOutputStream(), true);
-                    out.println("FREND_CHAT_VER_1_00");
+                    out.println("FREND_CHAT_VER_1_01");
 
                     in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     String response = in.readLine();
 
                     if (response.substring(0, 12).equals("FREND_SERVER")) {
-                        if (response.equals("FREND_SERVER_VER_1_00"))
+                        if (response.equals("FREND_SERVER_VER_1_01"))
                             callback.mdlConnectSuccessful();
                         else
                             callback.mdlWrongVersion();
@@ -79,9 +80,10 @@ public class FrendServer {
                     out.println("LOGIN" + username + " " + password);
 
                     String result = in.readLine();
-                    if (result.equals("CREDENTIALS_OKAY"))
+                    if (result.equals("CREDENTIALS_OKAY")) {
                         callback.mdlCredentialsAccepted(username);
-                    else if (result.equals("CREDENTIALS_DENIED"))
+                        storedUsername = username;
+                    } else if (result.equals("CREDENTIALS_DENIED"))
                         callback.mdlCredentialsRejected();
                     else
                         callback.mdlConnectionError();
@@ -102,9 +104,10 @@ public class FrendServer {
                 try {
                     out.println("REG" + colorHex + username + " " + password);
                     String response = in.readLine();
-                    if (response.equals("USER_REGISTERED"))
+                    if (response.equals("USER_REGISTERED")) {
                         callback.mdlCredentialsAccepted(username);
-                    else if (response.equals("USERNAME_IN_USE"))
+                        storedUsername = username;
+                    } else if (response.equals("USERNAME_IN_USE"))
                         callback.mdlUsernameInUse();
                     else
                         callback.mdlConnectionError();
@@ -144,7 +147,13 @@ public class FrendServer {
                     while (socket.isConnected()) {
                         String response = in.readLine();
                         if (response.substring(0, 3).equals("BRD")) {
-                            callback.mdlChatMessage(response.substring(3, response.length()));
+                            String username = response.substring(10, response.indexOf(" "));
+                            String color = response.substring(3, 10);
+                            String message = response.substring(response.indexOf(" ") + 1, response.length());
+                            if (storedUsername.equals(username))
+                                callback.mdlChatMessage(true, username, color, message);
+                            else
+                                callback.mdlChatMessage(false, username, color, message);
                         } else if (response.substring(0, 4).equals("JOIN")) {
                             callback.mdlJoinUser(response.substring(11, response.length()), response.substring(4, 11));
                         } else if (response.substring(0, 5).equals("LEAVE")) {
@@ -157,9 +166,12 @@ public class FrendServer {
                         } else if (response.equals("PASS_BAD")) {
                             if (accountCallback != null)
                                 accountCallback.mdlPasswordInvalid();
-                        } else if (response.equals("COLOR_UPDATED")) {
-                            if (accountCallback != null)
-                                accountCallback.mdlColorUpdated();
+                        } else if (response.substring(0, 13).equals("COLOR_UPDATED")) {
+                            if (!storedUsername.equals("")) {
+                                callback.mdlColorUpdated(storedUsername, response.substring(13, 20));
+                                if (accountCallback != null)
+                                    accountCallback.mdlColorUpdated();
+                            }
                         }
                     }
                 } catch (Exception e) {

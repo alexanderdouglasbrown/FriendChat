@@ -83,7 +83,6 @@ public class Account {
     }
 
     public void mdlColorUpdated() {
-        Chat.getHandle().updateColor(newColor);
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Frend Chat");
