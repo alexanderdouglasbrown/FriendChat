@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -19,7 +20,6 @@ import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
 
 public class Chat {
     @FXML
@@ -32,10 +32,13 @@ public class Chat {
     private FrendServer frendServer = FrendServer.getInstance();
     private Stage accountStage;
 
-    String storedUsername;
-    static Chat chatHandle;
+    private AudioClip sendDing;
+    private AudioClip receiveDing;
 
     public void initialize() {
+        sendDing = new AudioClip(getClass().getResource("/FrendChat/Sounds/deepbell.m4a").toString());
+        receiveDing = new AudioClip(getClass().getResource("/FrendChat/Sounds/lightbell.m4a").toString());
+
         webChat.setContextMenuEnabled(false);
 
         String initialHTML = "<style>" +
@@ -62,9 +65,6 @@ public class Chat {
             }
         });
 
-        storedUsername = (String) primaryStage.getUserData();
-        chatHandle = this;
-
         accountStage = new Stage();
         accountStage.getIcons().add(Main.getIcon());
         accountStage.setTitle("Frend Chat");
@@ -78,22 +78,11 @@ public class Chat {
         }
     }
 
-    static Chat getHandle(){
-        return chatHandle;
-    }
-
     public void btnSend() {
         if (txtInput.getLength() == 0)
             return;
 
-        String message = txtInput.getText();
-        message = message.replace("&", "&amp;");
-        message = message.replace("<", "&lt;");
-        message = message.replace(">", "&gt;");
-        message = message.replace("\"", "&quot;");
-        message = message.replace("'", "&#39;");
-
-        frendServer.broadcastMessage(message, this);
+        frendServer.broadcastMessage(txtInput.getText(), this);
     }
 
     public void btnAccount() {
@@ -110,10 +99,16 @@ public class Chat {
         });
     }
 
-    public void mdlChatMessage(String message) {
+    public void mdlChatMessage(boolean isMyMessage,String username, String color, String message) {
         Platform.runLater(() -> {
-            webChat.getEngine().executeScript("document.body.innerHTML += \"" + message + "\";");
+            String formattedMessage = "<div><b><font color='" + color + "'>" + username + "</font>:</b> " + message + "</div>";
+            webChat.getEngine().executeScript("document.body.innerHTML += \"" + formattedMessage + "\";");
             webChat.getEngine().executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+            if (isMyMessage)
+                sendDing.play();
+            else
+                receiveDing.play();
         });
     }
 
@@ -168,10 +163,10 @@ public class Chat {
         });
     }
 
-    public void updateColor(String color){
+    public void mdlColorUpdated(String username, String color){
         Platform.runLater(() -> {
             int pos = -1;
-            String testString = "Text[text=\"" + storedUsername + "\"";
+            String testString = "Text[text=\"" + username + "\"";
             for (int i = 0; i < lstUsers.getItems().size(); i++) {
                 if (lstUsers.getItems().get(i).toString().contains(testString)) {
                     pos = i;
@@ -181,7 +176,7 @@ public class Chat {
             if (pos != -1)
                 lstUsers.getItems().remove(pos);
 
-            Text user = new Text(storedUsername);
+            Text user = new Text(username);
             user.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
             user.setFill(Color.web(color));
             lstUsers.getItems().add(user);
