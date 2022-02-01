@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="212603bc-c1c1-4886-8715-e853a86c884f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Frend Chat/FrendChat/Views/Chat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Frend Chat/FrendChat/Views/Chat.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrendChat/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrendChat/Models/FrendServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Models/FrendServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrendChat/Presenters/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Presenters/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrendChat/Presenters/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Presenters/Chat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrendChat/Presenters/Connect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Presenters/Connect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrendChat/Presenters/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Presenters/Login.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/FrendChat/Presenters/Connect.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="231qTbmK7CQtQ9AeFpnlXi6SVIm" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="FrendChat.Main" />
+      <module name="Frend Chat" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="212603bc-c1c1-4886-8715-e853a86c884f" name="Changes" comment="" />
+      <created>1640911953793</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1640911953793</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/FrendChat/Presenters/Login.java</url>
+          <line>225</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Frend_Chat$Unnamed.ic" NAME="Unnamed Coverage Results" MODIFIED="1643703525446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

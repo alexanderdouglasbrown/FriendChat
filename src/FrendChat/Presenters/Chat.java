@@ -2,7 +2,6 @@ package FrendChat.Presenters;
 
 import FrendChat.Main;
 import FrendChat.Models.FrendServer;
-import com.sun.javaws.exceptions.ExitException;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -74,7 +73,7 @@ public class Chat {
             Parent root = FXMLLoader.load(getClass().getResource("/FrendChat/Views/Account.fxml"));
             accountStage.setScene(new Scene(root));
         } catch (Exception e) {
-            System.exit(ExitException.LAUNCH_ERROR);
+            System.exit(1);
         }
     }
 
@@ -115,7 +114,7 @@ public class Chat {
     public void mdlConnectionError() {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Connection Error");
             alert.setContentText("A communication error has occurred with the server.");
             alert.showAndWait();
@@ -126,7 +125,7 @@ public class Chat {
             Main.setPrimaryStage(new Stage());
             Stage stage = Main.getPrimaryStage();
             stage.getIcons().add(Main.getIcon());
-            stage.setTitle("Frend Chat");
+            stage.setTitle("Friend Chat");
             stage.setMinWidth(260);
             stage.setMinHeight(165);
             try {
@@ -134,7 +133,7 @@ public class Chat {
                 stage.setScene(new Scene(root));
                 stage.show();
             } catch (Exception e) {
-                System.exit(ExitException.LAUNCH_ERROR);
+                System.exit(2);
             }
         });
     }

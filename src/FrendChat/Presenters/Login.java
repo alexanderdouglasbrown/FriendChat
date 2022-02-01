@@ -2,7 +2,6 @@ package FrendChat.Presenters;
 
 import FrendChat.Main;
 import FrendChat.Models.FrendServer;
-import com.sun.javaws.exceptions.ExitException;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -58,7 +57,7 @@ public class Login {
     public void btnLogin(ActionEvent actionEvent) {
         if (txtLoginUsername.getText().contains(" ")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Username May Not Contain a Space");
             alert.setContentText("Your username may not contain a space. Please choose something different.");
             alert.showAndWait();
@@ -68,7 +67,7 @@ public class Login {
 
         if (txtLoginUsername.getText().length() > maxUsernameLength) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Username May Not Contain Be Greater Than " + maxUsernameLength + " Characters");
             alert.setContentText("Your username may not be greater than " + maxUsernameLength + " characters. Please choose something different.");
             alert.showAndWait();
@@ -78,7 +77,7 @@ public class Login {
 
         if (txtLoginUsername.getLength() == 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Username Field Is Empty");
             alert.setContentText("You have not typed in a username.");
             alert.showAndWait();
@@ -88,7 +87,7 @@ public class Login {
 
         if (pswLoginPassword.getLength() == 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Password Field Is Empty");
             alert.setContentText("You have not typed in a password.");
             alert.showAndWait();
@@ -102,7 +101,7 @@ public class Login {
     public void btnRegister(ActionEvent actionEvent) {
         if (txtRegisterUsername.getText().contains(" ")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Username May Not Contain a Space");
             alert.setContentText("Your username may not contain a space. Please choose something different.");
             alert.showAndWait();
@@ -112,7 +111,7 @@ public class Login {
 
         if (txtRegisterUsername.getText().length() > maxUsernameLength) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Username May Not Contain Be Greater Than " + maxUsernameLength + " Characters");
             alert.setContentText("Your username may not be greater than " + maxUsernameLength + " characters. Please choose something different.");
             alert.showAndWait();
@@ -122,7 +121,7 @@ public class Login {
 
         if (txtRegisterUsername.getLength() == 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Username Field Is Empty");
             alert.setContentText("You have not typed in a username.");
             alert.showAndWait();
@@ -132,7 +131,7 @@ public class Login {
 
         if (pswRegisterPassword.getLength() < 8) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Password Is Too Short");
             alert.setContentText("Your password must be at least 8 characters in length. Please try again.");
             alert.showAndWait();
@@ -142,7 +141,7 @@ public class Login {
 
         if (!pswRegisterPassword.getText().equals(pswConfirmPassword.getText())) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Passwords Do Not Match");
             alert.setContentText("Your passwords do not match. Please try again.");
             alert.showAndWait();
@@ -166,7 +165,7 @@ public class Login {
     public void mdlUsernameInUse() {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Username in Use");
             alert.setContentText("The username you have chosen is already in use. Please choose another.");
             alert.showAndWait();
@@ -176,7 +175,7 @@ public class Login {
     public void mdlCredentialsRejected() {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Invalid Username or Password");
             alert.setContentText("Could not log in with the provided username and password. Please try again.");
             alert.showAndWait();
@@ -186,7 +185,7 @@ public class Login {
     public void mdlConnectionError() {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Connection Error");
             alert.setContentText("A communication error has occurred with the server.");
             alert.showAndWait();
@@ -197,7 +196,7 @@ public class Login {
             Main.setPrimaryStage(new Stage());
             Stage stage = Main.getPrimaryStage();
             stage.getIcons().add(Main.getIcon());
-            stage.setTitle("Frend Chat");
+            stage.setTitle("Friend Chat");
             stage.setMinWidth(260);
             stage.setMinHeight(165);
             try {
@@ -205,7 +204,7 @@ public class Login {
                 stage.setScene(new Scene(root));
                 stage.show();
             } catch (Exception e) {
-                System.exit(ExitException.LAUNCH_ERROR);
+                System.exit(3);
             }
         });
     }
@@ -216,7 +215,7 @@ public class Login {
             Main.setPrimaryStage(new Stage());
             Stage stage = Main.getPrimaryStage();
             stage.getIcons().add(Main.getIcon());
-            stage.setTitle("Frend Chat");
+            stage.setTitle("Friend Chat");
             stage.setMinWidth(400);
             stage.setMinHeight(300);
             try {
@@ -224,7 +223,7 @@ public class Login {
                 stage.setScene(new Scene(root));
                 stage.show();
             } catch (Exception e) {
-                System.exit(ExitException.LAUNCH_ERROR);
+                System.exit(4);
             }
         });
     }
