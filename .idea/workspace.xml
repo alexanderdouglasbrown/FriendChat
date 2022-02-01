@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="212603bc-c1c1-4886-8715-e853a86c884f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Frend_Chat_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Frend_Chat_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frend Chat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Friend Chat.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrendChat/Presenters/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Presenters/Chat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrendChat/Presenters/Connect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Presenters/Connect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrendChat/Views/Chat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Views/Chat.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrendChat/Views/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Views/Login.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,19 +46,6 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="FrendChat.Main" />
       <module name="Friend Chat" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Friend Chat" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Friend Chat" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

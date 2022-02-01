@@ -66,8 +66,8 @@ public class Chat {
 
         accountStage = new Stage();
         accountStage.getIcons().add(Main.getIcon());
-        accountStage.setTitle("Frend Chat");
-        accountStage.setMinWidth(260);
+        accountStage.setTitle("Friend Chat");
+        accountStage.setMinWidth(320);
         accountStage.setMinHeight(400);
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/FrendChat/Views/Account.fxml"));

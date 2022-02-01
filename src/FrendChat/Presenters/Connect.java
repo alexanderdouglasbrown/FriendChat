@@ -61,7 +61,7 @@ public class Connect {
             Stage stage = Main.getPrimaryStage();
             stage.getIcons().add(Main.getIcon());
             stage.setTitle("Friend Chat");
-            stage.setMinWidth(250);
+            stage.setMinWidth(320);
             stage.setMinHeight(300);
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/FrendChat/Views/Login.fxml"));

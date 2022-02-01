@@ -79,7 +79,7 @@
                         <Label text="Username&#13;Color" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
                         <ColorPicker fx:id="clrRegisterColor" prefHeight="25.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <value>
-                                <Color blue="0.0" green="0.0" red="0.0" />
+                                <Color red="0.0" green="0.0" blue="0.0" />
                             </value>
                         </ColorPicker>
                         <Button fx:id="btnRegister" mnemonicParsing="false" onAction="#btnRegister" text="Register" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
