@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<GridPane hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FrendChat.Presenters.Account">
+    <columnConstraints>
+        <ColumnConstraints prefWidth="60" />
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints prefHeight="30.0" />
+        <RowConstraints prefHeight="30.0" />
+        <RowConstraints prefHeight="30.0" />
+        <RowConstraints prefHeight="30.0" />
+        <RowConstraints prefHeight="30.0" />
+        <RowConstraints prefHeight="30.0" />
+        <RowConstraints prefHeight="30.0" />
+        <RowConstraints prefHeight="30.0" />
+        <RowConstraints prefHeight="30.0" />
+    </rowConstraints>
+    <children>
+        <Label text="Account Options" GridPane.columnSpan="2">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label text="Update Password" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <Label text="Current" textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+        <PasswordField fx:id="pswCurrent" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="New" textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+        <PasswordField fx:id="pswNew" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label text="Confirm" textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+        <PasswordField fx:id="pswConfirm" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Button mnemonicParsing="false" onAction="#btnUpdatePassword" text="Update" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+        <Label text="Update Color" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="6">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <Label text="Color" textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+        <ColorPicker fx:id="clrUserColor" prefHeight="25.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <value>
+                <Color blue="0.0" green="0.0" red="0.0" />
+            </value>
+        </ColorPicker>
+        <Button mnemonicParsing="false" onAction="#btnUpdateColor" text="Update" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+    </children>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+</GridPane>

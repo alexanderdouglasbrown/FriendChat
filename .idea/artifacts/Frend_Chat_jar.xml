@@ -2,7 +2,7 @@
   <artifact type="jar" name="Frend Chat:jar">
     <output-path>$PROJECT_DIR$</output-path>
     <root id="archive" name="Frend Chat.jar">
-      <element id="module-output" name="Frend Chat" />
+      <element id="module-output" name="Friend Chat" />
     </root>
   </artifact>
 </component>

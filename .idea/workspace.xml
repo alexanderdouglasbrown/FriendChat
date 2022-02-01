@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="212603bc-c1c1-4886-8715-e853a86c884f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Frend Chat/FrendChat/Views/Chat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Frend Chat/FrendChat/Views/Chat.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FrendChat/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FrendChat/Models/FrendServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Models/FrendServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FrendChat/Presenters/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Presenters/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FrendChat/Presenters/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Presenters/Chat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FrendChat/Presenters/Connect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Presenters/Connect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FrendChat/Presenters/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Presenters/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Frend_Chat_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Frend_Chat_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frend Chat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Friend Chat.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,13 +36,30 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_202" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="FrendChat.Main" />
-      <module name="Frend Chat" />
+      <module name="Friend Chat" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Friend Chat" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Friend Chat" />
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -71,17 +86,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/FrendChat/Presenters/Login.java</url>
-          <line>225</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Frend_Chat$Unnamed.ic" NAME="Unnamed Coverage Results" MODIFIED="1643703525446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
