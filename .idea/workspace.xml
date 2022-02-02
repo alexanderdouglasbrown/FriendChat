@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="212603bc-c1c1-4886-8715-e853a86c884f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FrendChat/Presenters/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Presenters/Chat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FrendChat/Presenters/Connect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Presenters/Connect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FrendChat/Views/Chat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Views/Chat.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FrendChat/Views/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrendChat/Views/Login.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
