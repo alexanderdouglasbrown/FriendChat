@@ -2,7 +2,6 @@ package FrendChat.Presenters;
 
 import FrendChat.Main;
 import FrendChat.Models.FrendServer;
-import com.sun.javaws.exceptions.ExitException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,7 +30,7 @@ public class Connect {
             port = Integer.parseInt(txtPort.getText());
         } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Invalid Port Number");
             alert.setContentText("Port must contain a number.");
             alert.showAndWait();
@@ -40,7 +39,7 @@ public class Connect {
 
         if (port > 65535 || port < 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Invalid Port Range");
             alert.setContentText("Port value must be between 0 and 65535.");
             alert.showAndWait();
@@ -61,15 +60,15 @@ public class Connect {
             Main.setPrimaryStage(new Stage());
             Stage stage = Main.getPrimaryStage();
             stage.getIcons().add(Main.getIcon());
-            stage.setTitle("Frend Chat");
-            stage.setMinWidth(250);
+            stage.setTitle("Friend Chat");
+            stage.setMinWidth(320);
             stage.setMinHeight(300);
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/FrendChat/Views/Login.fxml"));
                 stage.setScene(new Scene(root));
                 stage.show();
             } catch (Exception e) {
-                System.exit(ExitException.LAUNCH_ERROR);
+                System.exit(5);
             }
         });
     }
@@ -80,7 +79,7 @@ public class Connect {
             uiProgress.setVisible(false);
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Unable to Connect");
             alert.setContentText("Unable to connect. Check if your IP address and port were entered correctly.");
             alert.showAndWait();
@@ -93,9 +92,9 @@ public class Connect {
             uiProgress.setVisible(false);
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Frend Chat");
-            alert.setHeaderText("Frend Chat Client Not up to Date");
-            alert.setContentText("Unable to connect. Please download the newest version of Frend Chat.");
+            alert.setTitle("Friend Chat");
+            alert.setHeaderText("Friend Chat Client Not up to Date");
+            alert.setContentText("Unable to connect. Please download the newest version of Friend Chat.");
             alert.showAndWait();
         });
     }

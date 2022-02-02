@@ -40,13 +40,13 @@ public class FrendServer {
                     socket.setSoTimeout(5000);
 
                     out = new PrintWriter(socket.getOutputStream(), true);
-                    out.println("FREND_CHAT_VER_1_02");
+                    out.println("FRIEND_CHAT");
 
                     in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     String response = in.readLine();
 
-                    if (response.substring(0, 12).equals("FREND_SERVER")) {
-                        if (response.equals("FREND_SERVER_WELCOME"))
+                    if (response.substring(0, 13).equals("FRIEND_SERVER")) {
+                        if (response.equals("FRIEND_SERVER_WELCOME"))
                             callback.mdlConnectSuccessful();
                         else
                             callback.mdlWrongVersion();

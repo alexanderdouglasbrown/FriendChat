@@ -27,7 +27,7 @@ public class Account {
     public void btnUpdatePassword() {
         if (pswNew.getLength() < 8) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Password Is Too Short");
             alert.setContentText("Your password must be at least 8 characters in length. Please try again.");
             alert.showAndWait();
@@ -37,7 +37,7 @@ public class Account {
 
         if (!pswNew.getText().equals(pswConfirm.getText())) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Passwords Do Not Match");
             alert.setContentText("Your passwords do not match. Please try again.");
             alert.showAndWait();
@@ -61,7 +61,7 @@ public class Account {
     public void mdlPasswordInvalid() {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Invalid Password");
             alert.setContentText("Your original password is incorrect. Please try again.");
             alert.showAndWait();
@@ -71,7 +71,7 @@ public class Account {
     public void mdlPasswordUpdated() {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Password Successfully Changed");
             alert.setContentText("Your password has been updated.");
             alert.showAndWait();
@@ -85,7 +85,7 @@ public class Account {
     public void mdlColorUpdated() {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Frend Chat");
+            alert.setTitle("Friend Chat");
             alert.setHeaderText("Color Changed");
             alert.setContentText("Your username color has been updated.");
             alert.showAndWait();
